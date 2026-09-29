@@ -28,7 +28,7 @@ Reviewed on 29 September 2026 against the two supplied A-range rubric screenshot
 - Axe checks on both pages report **zero WCAG 2/2.1 A and AA violations**. A separate test checks normal-text contrast of small case-card accents at 4.5:1 or higher.
 - The printable checklist rendered as one A4 page without clipping. Its five boxes remain usable on screen and on paper.
 - Earlier review corrected a moved GMMP PDF URL and a source-register layout defect at 360px. The current four global files were checked against the final report’s printed pages 7, 25, 29, 31 and 33, with exact-value automated checks. Mobile time-series charts now have a visible swipe cue and keyboard-focusable horizontal region.
-- The earlier public Pages build returned HTTP 200. The expanded build requires a fresh public-URL verification after deployment.
+- The expanded GitHub Pages build for `8cb6f23` completed. The public page returned HTTP 200 and showed the new 2020 crime comparison; the medium switch worked; all five CSV files, the checklist, source register and data dictionary returned HTTP 200. A 390px public-page check found no page-level overflow and confirmed the 700px chart scroll region.
 - `npm test` is the single repeatable verification command. See the final test output at release time rather than treating this file as proof of a later run.
 
 ## Work that cannot honestly be claimed complete

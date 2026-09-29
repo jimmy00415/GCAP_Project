@@ -1,6 +1,6 @@
 # Evidence-rich story expansion implementation plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Expand the published data story with source-checked visibility/topic datasets, complementary visualizations and a clearer evidence-to-action narrative.
 
@@ -33,11 +33,11 @@
 
 **Interfaces:** CSV columns `medium,year,women_percent` for visibility; `medium,year,topic,women_percent` for topics; `topic,women_percent` for economic subtopics. The existing S01 source ID covers all global tables.
 
-- [ ] Add tests for 10 visibility rows, all exact values and missing website years.
-- [ ] Add tests for 46 topic rows, six 2025 topic pairs, four complete historical series, the 2020 crime pair, absent earlier separate sports cells and two economic subtopics.
-- [ ] Run data tests to confirm RED from absent files.
-- [ ] Create the CSVs, locators and denominator/missingness definitions; run data tests to GREEN.
-- [ ] Commit the verified data package.
+- [x] Add tests for 10 visibility rows, all exact values and missing website years.
+- [x] Add tests for 46 topic rows, six 2025 topic pairs, four complete historical series, the 2020 crime pair, absent earlier separate sports cells and two economic subtopics.
+- [x] Run data tests to confirm RED from absent files.
+- [x] Create the CSVs, locators and denominator/missingness definitions; run data tests to GREEN.
+- [x] Commit the verified data package.
 
 ### Task 2: Rebuild the article's evidence arc
 
@@ -45,11 +45,11 @@
 
 **Interfaces:** Preserve `#intro`, `#evidence`, `#cases`, `#voices`, `#checklist`, `#method`; add `#visibility` and `#trend` for navigation. Existing medium controls keep their data attributes.
 
-- [ ] Test the six-link contents, new section headings, visibility/topic/expert denominators, source citations and three new download links; confirm RED.
-- [ ] Restructure the chapter order and write evidence-led transitions and takeaways with exact source limits.
-- [ ] Add the overall visibility SVG chart and table, plus paired-dot 2025 topic plot and table; confirm tests GREEN.
-- [ ] Add visual checks for direct values, zero baselines, distinct medium legend and 360/768/1440 layouts.
-- [ ] Commit the narrative and new published-data visuals.
+- [x] Test the six-link contents, new section headings, visibility/topic/expert denominators, source citations and three new download links; confirm RED.
+- [x] Restructure the chapter order and write evidence-led transitions and takeaways with exact source limits.
+- [x] Add the overall visibility SVG chart and table, plus paired-dot 2025 topic plot and table; confirm tests GREEN.
+- [x] Add visual checks for direct values, zero baselines, distinct medium legend and 360/768/1440 layouts.
+- [x] Commit the narrative and new published-data visuals.
 
 ### Task 3: Make the longitudinal and local evidence explorable
 
@@ -57,16 +57,16 @@
 
 **Interfaces:** The full-role grid exposes `data-medium`, `data-year`, `data-role`, `data-value` on each value cell; the local recurrence matrix exposes article/person IDs in table headers and `data-present` on its eight marked cells.
 
-- [ ] Test that all 48 role cells match `gmmp_roles.csv`, both media are visible with JavaScript disabled, and the recurrence matrix has exactly eight marks across six people; confirm RED.
-- [ ] Add the full-role grid and recurrence matrix with nearby reading notes and visible table semantics; confirm tests GREEN.
-- [ ] Review the six-case scope warning, U explanation and role-affiliation labels alongside the new visual forms.
-- [ ] Commit the longitudinal and local visualizations.
+- [x] Test that all 48 role cells match `gmmp_roles.csv`, both media are visible with JavaScript disabled, and the recurrence matrix has exactly eight marks across six people; confirm RED.
+- [x] Add the full-role grid and recurrence matrix with nearby reading notes and visible table semantics; confirm tests GREEN.
+- [x] Review the six-case scope warning, U explanation and role-affiliation labels alongside the new visual forms.
+- [x] Commit the longitudinal and local visualizations.
 
 ### Task 4: Release review and deployment
 
 **Files:** Modify `README.md`, `REVIEW.md`, possibly `index.html`/`styles.css` only for verified defects; tests as needed.
 
-- [ ] Run `npm test`, inspect 360/768/1440 screenshots, no-JavaScript view, keyboard controls, print checklist and Axe output.
-- [ ] Review the entire article for a single clear claim per chapter, source accuracy, spelling, quote handling and visual redundancy. Fix defects with failing regression tests when behavior changes.
-- [ ] Update release notes and data inventory. Run `git diff --check`, commit and push `site-build`.
-- [ ] Confirm the latest Pages build SHA and check the public URL, assets, chart interaction, downloads and mobile overflow.
+- [x] Run `npm test`, inspect 360/768/1440 screenshots, no-JavaScript view, keyboard controls, print checklist and Axe output.
+- [x] Review the entire article for a single clear claim per chapter, source accuracy, spelling, quote handling and visual redundancy. Fix defects with failing regression tests when behavior changes.
+- [x] Update release notes and data inventory. Run `git diff --check`, commit and push `site-build`.
+- [x] Confirm the latest Pages build SHA and check the public URL, assets, chart interaction, downloads and mobile overflow.
