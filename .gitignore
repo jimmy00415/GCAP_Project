@@ -1,0 +1,6 @@
+node_modules/
+.superpowers/
+Who_Gets_to_Be_the_Expert_Proposal.pdf
+*.log
+test-results/
+screenshots/
