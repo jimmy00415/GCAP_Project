@@ -196,8 +196,8 @@ tbody tr:last-child { border-bottom: 1px solid var(--line); }
 .downloads a:hover { text-decoration: underline; }
 .references-title { font-family: var(--serif); font-size: 1.9rem; font-weight: 400; margin: 0 0 1rem; }
 .references { list-style: none; margin: 0; padding: 0; }
-.references li { display: grid; grid-template-columns: 44px 1fr; gap: .6rem; border-top: 1px solid var(--line); padding: .6rem 0; color: #344647; font-size: .77rem; line-height: 1.55; scroll-margin-top: 90px; }
-.references li strong { color: var(--rust); }
+.references li { position: relative; border-top: 1px solid var(--line); padding: .6rem 0 .6rem calc(44px + .6rem); color: #344647; font-size: .77rem; line-height: 1.55; scroll-margin-top: 90px; }
+.references li strong { position: absolute; top: .6rem; left: 0; color: var(--rust); }
 .corrections { margin-top: 2.7rem; padding: 1.1rem 1.25rem; background: #e1e8df; }
 .corrections h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; margin: 0 0 .35rem; }
 .corrections p { margin: 0; font-size: .78rem; color: var(--ink-soft); line-height: 1.65; }
@@ -241,9 +241,12 @@ tbody tr:last-child { border-bottom: 1px solid var(--line); }
   .stat-divider { flex: none; }
   .scope-note { font-size: .62rem; margin-bottom: 3rem; }
   .hero-bottom { align-items: start; flex-direction: column; gap: 1rem; }
-  .contents { position: static; padding: 1rem 5vw; align-items: start; flex-direction: column; gap: .4rem; }
-  .contents-links { justify-content: start; gap: .6rem 1.3rem; }
-  .section { display: block; padding: 4.5rem 5vw; scroll-margin-top: 0; }
+  .contents { position: sticky; top: 0; min-height: 52px; padding: .55rem 5vw; align-items: center; flex-direction: row; gap: 0; }
+  .contents-label { display: none; }
+  .contents-links { justify-content: start; flex-wrap: nowrap; gap: 1.3rem; overflow-x: auto; width: 100%; scrollbar-width: none; }
+  .contents-links::-webkit-scrollbar { display: none; }
+  .contents a { white-space: nowrap; }
+  .section { display: block; padding: 4.5rem 5vw; scroll-margin-top: 65px; }
   .section-number { margin-bottom: 1.6rem; }
   .section h2 { font-size: clamp(2.7rem, 9vw, 4rem); }
   .story-copy { font-size: 1rem; line-height: 1.75; }

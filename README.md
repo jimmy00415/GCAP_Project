@@ -22,7 +22,7 @@ The test suite checks all 48 final-report GMMP values, the eight local appearanc
 1. Create an empty GitHub repository. For a personal root site, name it `USERNAME.github.io`; for a project site, any repository name works.
 2. Push this repository's `site-build` branch to GitHub. The working proposal PDF is deliberately ignored and will not be pushed.
 3. In repository **Settings → Pages**, choose **Deploy from a branch**, select `site-build`, and select `/(root)`.
-4. Wait for GitHub's deployment status, then open the displayed Pages URL. Re-run the browser checks against that URL if its final path differs from local testing.
+4. Wait for GitHub's deployment status, then open the displayed Pages URL. On that public URL, check the desktop and mobile layouts, switch the medium control, open the printable checklist, and download both CSV files. The automated browser suite runs against local files; this final public-URL check confirms that Pages is serving the chosen branch and path.
 
 GitHub Pages looks for `index.html` at the top of the selected publishing source. The `.nojekyll` file keeps these already prepared static files as-is. No remote is configured in this local folder, so publishing requires the owner's repository URL and push access.
 

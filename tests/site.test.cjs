@@ -117,6 +117,37 @@ test('layouts at 360, 768 and 1440 CSS pixels have no page-level horizontal over
   }
 });
 
+test('mobile contents stay available without obscuring the story', async () => {
+  const { context, page } = await visit({ viewport: { width: 390, height: 844 } });
+  await page.locator('#cases').scrollIntoViewIfNeeded();
+  const box = await page.getByRole('navigation', { name: 'Story contents' }).boundingBox();
+  assert.ok(box.y >= 0 && box.y < 10, `mobile contents scrolled away: y=${box.y}`);
+  assert.ok(box.height <= 65, `mobile contents obscure the story: height=${box.height}`);
+  await context.close();
+});
+
+test('source citations use a readable hanging indent at mobile and desktop widths', async () => {
+  for (const width of [360, 1440]) {
+    const { context, page } = await visit({ viewport: { width, height: 800 } });
+    const misplaced = await page.locator('.references li').evaluateAll((items) => items.flatMap((item) => {
+      const idRight = item.querySelector('strong').getBoundingClientRect().right;
+      const fragments = [];
+      for (const child of item.childNodes) {
+        if (child.nodeType === Node.TEXT_NODE && child.textContent.trim()) {
+          const range = document.createRange();
+          range.selectNodeContents(child);
+          fragments.push(...range.getClientRects());
+        } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'STRONG') {
+          fragments.push(child.getBoundingClientRect());
+        }
+      }
+      return fragments.filter((rect) => rect.width > 1 && rect.left < idRight + 4).map(() => item.id);
+    }));
+    assert.deepEqual(misplaced, [], `${width}px: citation fragments fell under the source ID: ${misplaced.join(', ')}`);
+    await context.close();
+  }
+});
+
 test('small accent labels on case cards meet 4.5 to 1 text contrast', async () => {
   const { context, page } = await visit();
   const contrast = await page.locator('.featured-card .case-top').first().evaluate((node) => {

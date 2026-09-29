@@ -4,7 +4,7 @@ All figures and case labels used by the story are in this folder. Files are UTF-
 
 ## `gmmp_roles.csv`
 
-One row is one published rounded percentage for a source role, news medium and monitoring round. The 48 values come from Figures 16–17 of the [final GMMP 2025 Global Report](https://whomakesthenews.org/wp-content/uploads/2025/12/GMMP2025-GlobalReport.pdf), printed page 33. The earlier highlights document is not used.
+One row is one published rounded percentage for a source role, news medium and monitoring round. The 48 values come from Figures 16–17 of the [final GMMP 2025 Global Report](https://whomakesthenews.org/wp-content/uploads/2026/04/GMMP2025-GlobalReport.pdf), printed page 33. The earlier highlights document is not used.
 
 | Column | Meaning |
 | --- | --- |
