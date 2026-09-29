@@ -49,7 +49,7 @@ test('desktop opening screen includes both labelled values and the global scope 
 test('story has a logical contents journey and directly sourced evidence', async () => {
   const { context, page } = await visit();
   const nav = page.getByRole('navigation', { name: 'Story contents' });
-  for (const label of ['Evidence', 'Cases', 'Voices', 'Checklist', 'Method']) {
+  for (const label of ['Roles', 'Wider view', 'Over time', 'Hong Kong', 'Checklist', 'Method']) {
     assert.ok(await nav.getByRole('link', { name: label, exact: true }).count(), `${label} navigation`);
   }
   assert.equal(await page.locator('[data-case-card]').count(), 6);
@@ -60,6 +60,69 @@ test('story has a logical contents journey and directly sourced evidence', async
   assert.equal(await page.locator('blockquote').count(), 2);
   assert.match(await page.locator('#voices').innerText(), /Sarah Macharia/);
   assert.match(await page.locator('#voices').innerText(), /participant E36/i);
+  await context.close();
+});
+
+test('the wider-view chapters separate overall visibility from topic and role denominators', async () => {
+  const { context, page } = await visit();
+  const visibility = page.locator('#visibility');
+  const topics = page.locator('#topics');
+  assert.ok(await visibility.isVisible());
+  assert.ok(await topics.isVisible());
+  assert.match(await visibility.innerText(), /all people seen, heard or spoken about/i);
+  assert.match(await topics.innerText(), /people in stories assigned to (?:each|a) topic/i);
+  assert.match(await page.locator('#evidence').innerText(), /speaking (?:role|function)/i);
+  const visibilityTable = page.getByRole('table', { name: 'Overall presence across observed rounds' });
+  assert.deepEqual(await visibilityTable.locator('tbody tr').evaluateAll((rows) => rows.map((row) => [...row.querySelectorAll('td')].map((cell) => cell.textContent.trim()))), [
+    ['17%', '18%', '21%', '24%', '24%', '25%', '26%'],
+    ['—', '—', '—', '—', '25%', '28%', '29%']
+  ]);
+  const topicTable = page.getByRole('table', { name: '2025 major topic values' });
+  assert.deepEqual(await topicTable.locator('tbody tr').evaluateAll((rows) => rows.map((row) => [...row.children].map((cell) => cell.textContent.trim()).join(' '))), [
+    'Sports 15% 14%',
+    'Crime and violence excluding GBV 21% 21%',
+    'Politics and government 22% 24%',
+    'Economy 25% 27%',
+    'Social and legal 27% 27%',
+    'Science and health 36% 36%'
+  ]);
+  assert.equal(await page.locator('#topics .topic-row').count(), 6);
+  for (const file of ['gmmp_visibility.csv', 'gmmp_topics.csv', 'gmmp_economic_subtopics_2025.csv']) {
+    assert.ok(await page.locator(`a[href="data/${file}"]`).count(), `${file} download`);
+  }
+  await context.close();
+});
+
+test('the complete role grid exposes every published round without inventing website history', async () => {
+  const { context, page } = await visit({ javaScriptEnabled: false });
+  const data = fs.readFileSync(path.resolve(__dirname, '..', 'data', 'gmmp_roles.csv'), 'utf8').trim().split(/\r?\n/).slice(1).map((line) => {
+    const [medium, year, role, value] = line.split(',');
+    return `${medium}:${year}:${role}:${value}`;
+  }).sort();
+  const cells = await page.locator('#role-grid td[data-medium][data-year][data-role][data-value]').evaluateAll((nodes) => nodes.map((node) => `${node.dataset.medium}:${node.dataset.year}:${node.dataset.role}:${node.dataset.value}`).sort());
+  assert.deepEqual(cells, data);
+  assert.ok(await page.getByRole('table', { name: 'All print radio and television role values' }).isVisible());
+  assert.ok(await page.getByRole('table', { name: 'All news website role values' }).isVisible());
+  await context.close();
+});
+
+test('the recurrence matrix reveals all eight appearances across six identified people', async () => {
+  const { context, page } = await visit();
+  const matrix = page.getByRole('table', { name: 'Person-article recurrence matrix' });
+  assert.ok(await matrix.isVisible());
+  const pairs = await matrix.locator('td[data-present="true"]').evaluateAll((nodes) => nodes.map((node) => `${node.closest('tr').dataset.person}:${node.dataset.case}`).sort());
+  assert.deepEqual(pairs, [
+    'p_bonnie_chan:C05',
+    'p_eddie_kwok:C01',
+    'p_eddie_kwok:C06',
+    'p_hannah_jeong:C02',
+    'p_jeny_yeung:C03',
+    'p_jeny_yeung:C04',
+    'p_lau_chun_kong:C02',
+    'p_michael_fitzgerald:C03'
+  ]);
+  assert.equal(await matrix.locator('tbody tr').count(), 6);
+  assert.match(await page.locator('#counting').innerText(), /not established from selected text/i);
   await context.close();
 });
 
@@ -104,6 +167,8 @@ test('the whole report and both medium panels remain readable without JavaScript
   assert.ok(await page.locator('#role-web').isVisible());
   assert.ok(await page.locator('#cases').isVisible());
   assert.ok(await page.locator('#method').isVisible());
+  assert.ok(await page.locator('#visibility').isVisible());
+  assert.ok(await page.locator('#topics').isVisible());
   assert.match(await page.locator('#counting').innerText(), /not established from selected text/i);
   await context.close();
 });
@@ -228,7 +293,7 @@ test('relative assets and downloads load from a nested project path', async () =
     await page.getByRole('button', { name: 'News websites' }).click();
     assert.ok(await page.locator('#role-web').isVisible());
     const localPaths = await page.locator('a[href^="data/"]').evaluateAll((links) => links.map((link) => link.href));
-    assert.equal(localPaths.length, 5);
+    assert.ok(localPaths.length >= 8);
     assert.ok(localPaths.every((url) => url.includes('/sample-project/data/')));
     await context.close();
   } finally {
