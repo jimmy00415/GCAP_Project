@@ -5,8 +5,8 @@
       "title": "GMMP 2025 Global Report: Progress on a Plateau",
       "publisher": "Global Media Monitoring Project / WACC",
       "url": "https://whomakesthenews.org/wp-content/uploads/2026/04/GMMP2025-GlobalReport.pdf",
-      "locator": "Figures 16–17, printed page 33",
-      "use": "All 48 global source-role percentages and the monitoring-round trend"
+      "locator": "Table 1, printed page 7; Figures 6, 10–11 and 16–17, printed pages 25, 29 and 33; Table 4, printed page 31",
+      "use": "Final-report visibility, topic, source-role and selected economic-subtopic percentages"
     },
     "S02": {
       "title": "GMMP 2025 Methodology Guide",
@@ -46,6 +46,9 @@
   },
   "method": {
     "global_denominator": "Percentages are women's share within each source role and medium in a monitoring round; values down a column do not sum to 100%.",
+    "visibility_denominator": "Women's share of all people seen, heard or spoken about in the specified medium and monitoring round; separate from source-role shares.",
+    "topic_denominator": "Women's share of people in stories assigned to the specified major topic and medium; not the share of experts or share of stories.",
+    "topic_missingness": "Historical social/legal, science/health, economy and politics/government series are published for both media from their observed starts. Separate sports and non-GBV crime values are recorded only for 2025; absent earlier rows are not zero.",
     "local_selection": "Six purposively selected RTHK English business-news articles from March–August 2026 illustrate role coding; they are not a representative Hong Kong sample.",
     "local_unit": "One named speaking person per article; repeated quotations in one article count once. A stable person_id deduplicates across articles.",
     "local_roles": "Specialist commentator interprets a wider issue using relevant knowledge. Institutional spokesperson speaks about or represents an organisation's own affairs. These local speaking-function labels adapt but do not exactly replicate GMMP's subject-priority coding.",
