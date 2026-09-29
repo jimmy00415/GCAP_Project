@@ -28,10 +28,11 @@ Reviewed on 29 September 2026 against the two supplied A-range rubric screenshot
 - Axe checks on both pages report **zero WCAG 2/2.1 A and AA violations**. A separate test checks normal-text contrast of small case-card accents at 4.5:1 or higher.
 - The printable checklist rendered as one A4 page without clipping. Its five boxes remain usable on screen and on paper.
 - Final review found and corrected a moved GMMP PDF URL and a source-register layout defect at 360px. The replacement official PDF returned HTTP 200 and its Figures 16–17 were independently compared with all 48 transcribed values. Citation indentation is now checked at mobile and desktop widths.
+- The public Pages build returned HTTP 200. A browser check confirmed the medium switch, a 360px layout without page overflow, and HTTP 200 for the printable checklist, both CSV files and the JSON register.
 - `npm test` is the single repeatable verification command. See the final test output at release time rather than treating this file as proof of a later run.
 
 ## Work that cannot honestly be claimed complete
 
-The proposal describes an independent second coding pass, 15–20-person comprehension check, practitioner or NGO review, possible original interviews, group contribution records, a proposal deck and a written final report. No evidence of completed work for these activities was supplied. The site labels relevant items as proposed and does not invent outcomes, participant names, endorsement or scores. The complete course assignment brief and GitHub repository URL were also not supplied; the site is ready to push but has no remote or public Pages URL.
+The proposal describes an independent second coding pass, 15–20-person comprehension check, practitioner or NGO review, possible original interviews, group contribution records, a proposal deck and a written final report. No evidence of completed work for these activities was supplied. The site labels relevant items as proposed and does not invent outcomes, participant names, endorsement or scores. The complete course assignment brief was not supplied. The web story is published at [jimmy00415.github.io/GCAP_Project](https://jimmy00415.github.io/GCAP_Project/).
 
-Before final course submission, the group should compare the full brief with the site and add only actually completed course activity records. Before publication, provide a GitHub remote and choose the `site-build` branch as the Pages source at `/(root)`.
+Before final course submission, the group should compare the full brief with the site and add only actually completed course activity records. The repository is [jimmy00415/GCAP_Project](https://github.com/jimmy00415/GCAP_Project), with `site-build` as the Pages source at `/(root)`.
