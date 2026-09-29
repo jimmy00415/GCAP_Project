@@ -31,6 +31,7 @@ GitHub Pages looks for `index.html` at the top of the selected publishing source
 - `data/gmmp_roles.csv`: 48 values transcribed from Figures 16–17 of the final GMMP 2025 Global Report, not the preliminary highlights.
 - `data/local_cases.csv`: eight project-coded named person–article appearances in six purposively selected 2026 RTHK reports.
 - `data/sources.json`: source URLs, locators, methods and limitations.
+- `data/README.md`: data dictionary and reconciliation rules.
 - `docs/superpowers/specs/` and `docs/superpowers/plans/`: the build rationale and implementation plan.
 
 The local case selection is a teaching set, not a population estimate for Hong Kong. The site does not claim original interviews, independent coding review, comprehension test results or NGO feedback. Those course activities require real group records before submission. A complete course rubric, when available, should be checked against this site and the rest of the group's submission package.
