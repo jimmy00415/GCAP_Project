@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "who-gets-to-be-the-expert",
+  "version": "1.0.0",
+  "description": "Static GCAP3117 editorial data story",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}

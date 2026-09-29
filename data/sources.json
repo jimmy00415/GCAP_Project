@@ -1,0 +1,55 @@
+{
+  "version": "2026-09-29",
+  "sources": {
+    "S01": {
+      "title": "GMMP 2025 Global Report: Progress on a Plateau",
+      "publisher": "Global Media Monitoring Project / WACC",
+      "url": "https://whomakesthenews.org/wp-content/uploads/2025/12/GMMP2025-GlobalReport.pdf",
+      "locator": "Figures 16–17, printed page 33",
+      "use": "All 48 global source-role percentages and the monitoring-round trend"
+    },
+    "S02": {
+      "title": "GMMP 2025 Methodology Guide",
+      "publisher": "Global Media Monitoring Project",
+      "url": "https://whomakesthenews.org/wp-content/uploads/2025/03/GMMP2025-MethodologyGuide.pdf",
+      "locator": "Guide page 31",
+      "use": "Published role definitions and the subject-priority rule"
+    },
+    "S03": {
+      "title": "The impact of journalism routines, practices and values on women experts’ media work",
+      "author": "Susan Fountaine",
+      "publisher": "Journalism",
+      "url": "https://journals.sagepub.com/doi/full/10.1177/14648849261447442",
+      "locator": "Time, timing and currency; participant E36",
+      "use": "Published New Zealand interview account and possible questions about reporting routines"
+    },
+    "S04": {
+      "title": "GMMP 2025: Global Report launch initiates strategic re-think to drive gender equality in the news",
+      "author": "Terri R. Miller",
+      "publisher": "WACC",
+      "url": "https://waccglobal.org/gmmp-2025-global-report-launch-initiates-strategic-re-think-to-drive-gender-equality-in-the-news/",
+      "locator": "11 December 2025; Sarah Macharia's remarks",
+      "use": "Published interpretation quote; not the numeric chart source"
+    },
+    "S05": {
+      "title": "Reflect Reality: Planning and Analysis",
+      "publisher": "Internews",
+      "url": "https://www.reflectreality.internews.org/chapter-4/planning-and-analysis",
+      "use": "Practitioner guidance for considering source function and keeping a sourcing record"
+    },
+    "C01": { "title": "HK home prices hit 28-month high", "publisher": "RTHK English", "date": "2026-04-28", "url": "https://news.rthk.hk/rthk/en/component/k2/1852715-20260428.htm" },
+    "C02": { "title": "'Bonus plot ratio scheme a core step in urban renewal'", "publisher": "RTHK English", "date": "2026-08-20", "url": "https://news.rthk.hk/rthk/en/component/k2/1866872-20260820.htm" },
+    "C03": { "title": "MTR Corp sees profits drop 7pc in 2025", "publisher": "RTHK English", "date": "2026-03-12", "url": "https://news.rthk.hk/rthk/en/component/k2/1847082-20260312.htm" },
+    "C04": { "title": "Profits more than double as home sales power MTR Corp", "publisher": "RTHK English", "date": "2026-08-13", "url": "https://news.rthk.hk/rthk/en/component/k2/1866062-20260813.htm" },
+    "C05": { "title": "HKEX reports record H1 results amid booming IPOs", "publisher": "RTHK English", "date": "2026-08-19", "url": "https://news.rthk.hk/rthk/en/component/k2/1866741-20260819.htm" },
+    "C06": { "title": "HK home prices ease slightly in July", "publisher": "RTHK English", "date": "2026-08-27", "url": "https://news.rthk.hk/rthk/en/component/k2/1867761-20260827.htm" }
+  },
+  "method": {
+    "global_denominator": "Percentages are women's share within each source role and medium in a monitoring round; values down a column do not sum to 100%.",
+    "local_selection": "Six purposively selected RTHK English business-news articles from March–August 2026 illustrate role coding; they are not a representative Hong Kong sample.",
+    "local_unit": "One named speaking person per article; repeated quotations in one article count once. A stable person_id deduplicates across articles.",
+    "local_roles": "Specialist commentator interprets a wider issue using relevant knowledge. Institutional spokesperson speaks about or represents an organisation's own affairs. These local speaking-function labels adapt but do not exactly replicate GMMP's subject-priority coding.",
+    "gender_presentation": "F and M require explicit female or male presentation in the selected text or an identified person's selected cross-reference. U means not established from selected text and does not describe a non-binary identity.",
+    "limits": "Do not pool global and local data; infer source-selection motives; reconstruct GMMP person counts from rounded percentages; or claim independent second coding before it occurs."
+  }
+}
