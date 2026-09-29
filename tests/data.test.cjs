@@ -54,10 +54,10 @@ test('overall visibility follows only the ten published monitoring points', () =
   assert.ok(data.every((row) => Number(row.women_percent) >= 0 && Number(row.women_percent) <= 100));
 });
 
-test('topic data retain four historical series and two 2025-only topics', () => {
+test('topic data retain four historical series, 2020 crime comparisons and 2025-only sports', () => {
   assert.ok(fs.existsSync(path.join(root, 'data', 'gmmp_topics.csv')), 'topic CSV is missing');
   const data = rows('gmmp_topics.csv');
-  assert.equal(data.length, 44);
+  assert.equal(data.length, 46);
   const values = (medium, topic) => data.filter((row) => row.medium === medium && row.topic === topic).map((row) => [Number(row.year), Number(row.women_percent)]);
   assert.deepEqual(values('legacy', 'social_legal'), [[1995, 19], [2000, 21], [2005, 28], [2010, 30], [2015, 28], [2020, 32], [2025, 27]]);
   assert.deepEqual(values('legacy', 'science_health'), [[1995, 27], [2000, 21], [2005, 22], [2010, 32], [2015, 35], [2020, 30], [2025, 36]]);
@@ -69,8 +69,8 @@ test('topic data retain four historical series and two 2025-only topics', () => 
   assert.deepEqual(values('website', 'politics_government'), [[2015, 19], [2020, 21], [2025, 24]]);
   assert.deepEqual(values('legacy', 'sports'), [[2025, 15]]);
   assert.deepEqual(values('website', 'sports'), [[2025, 14]]);
-  assert.deepEqual(values('legacy', 'crime_violence_excluding_gbv'), [[2025, 21]]);
-  assert.deepEqual(values('website', 'crime_violence_excluding_gbv'), [[2025, 21]]);
+  assert.deepEqual(values('legacy', 'crime_violence_excluding_gbv'), [[2020, 24], [2025, 21]]);
+  assert.deepEqual(values('website', 'crime_violence_excluding_gbv'), [[2020, 27], [2025, 21]]);
 });
 
 test('economic subtopic detail remains two selected print/radio/TV values', () => {

@@ -48,7 +48,7 @@
     "global_denominator": "Percentages are women's share within each source role and medium in a monitoring round; values down a column do not sum to 100%.",
     "visibility_denominator": "Women's share of all people seen, heard or spoken about in the specified medium and monitoring round; separate from source-role shares.",
     "topic_denominator": "Women's share of people in stories assigned to the specified major topic and medium; not the share of experts or share of stories.",
-    "topic_missingness": "Historical social/legal, science/health, economy and politics/government series are published for both media from their observed starts. Separate sports and non-GBV crime values are recorded only for 2025; absent earlier rows are not zero.",
+    "topic_missingness": "Historical social/legal, science/health, economy and politics/government series are published for both media from their observed starts. Crime/violence excluding GBV is comparable for 2020 and 2025; earlier crime values used a broader category. Separate sports values appear only in 2025. Absent rows are not zero.",
     "local_selection": "Six purposively selected RTHK English business-news articles from March–August 2026 illustrate role coding; they are not a representative Hong Kong sample.",
     "local_unit": "One named speaking person per article; repeated quotations in one article count once. A stable person_id deduplicates across articles.",
     "local_roles": "Specialist commentator interprets a wider issue using relevant knowledge. Institutional spokesperson speaks about or represents an organisation's own affairs. These local speaking-function labels adapt but do not exactly replicate GMMP's subject-priority coding.",

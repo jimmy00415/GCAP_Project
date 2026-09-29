@@ -27,14 +27,14 @@ Ten rounded values from the final report's Table 1 (printed p. 7), also presente
 
 ## `gmmp_topics.csv`
 
-Forty-four rounded values from final-report Table 1 (printed p. 7), with 2025 category findings discussed beside Figures 10–11 (p. 29). One row is women's share of **people in stories assigned to that major news topic**, by medium and monitoring round. It is not women's share of experts, the fraction of stories about that topic or a distribution that sums to 100%.
+Forty-six rounded values from final-report Table 1 (printed p. 7), with 2025 category findings discussed beside Figures 10–11 (p. 29). One row is women's share of **people in stories assigned to that major news topic**, by medium and monitoring round. It is not women's share of experts, the fraction of stories about that topic or a distribution that sums to 100%.
 
 | Column | Meaning |
 | --- | --- |
 | `medium`, `year`, `women_percent` | As above, using each topic's subjects-and-sources denominator. |
 | `topic` | `social_legal`, `science_health`, `economy`, `politics_government`, `sports`, or `crime_violence_excluding_gbv`. The final category excludes gender-based violence, which the report treats separately. |
 
-Social/legal, science/health, economy and politics/government have seven legacy and three website rounds. Sports and crime/violence excluding GBV are recorded here **only for 2025**; the Table 1 layout does not provide comparable earlier values for these separate categories. Missing earlier rows mean unavailable, not zero. The 2025 legacy economy share is 25%, while the website economy share is 27%; those are global topic figures, not Hong Kong or expert-role rates. Economy and politics/government increased by 15 percentage points from 1995 to 2025 in legacy news, using the published rounded endpoints.
+Social/legal, science/health, economy and politics/government have seven legacy and three website rounds. Crime/violence excluding GBV has comparable **2020 and 2025** values in Table 1: 24% and 21% for legacy news, 27% and 21% for websites. The older crime/violence rows used a broader category and are deliberately not spliced into this series. Sports is recorded here **only for 2025** because it was previously grouped with celebrity, arts and media. Missing rows mean unavailable under the selected comparable category, not zero. The 2025 legacy economy share is 25%, while the website economy share is 27%; those are global topic figures, not Hong Kong or expert-role rates. Economy and politics/government increased by 15 percentage points from 1995 to 2025 in legacy news, using the published rounded endpoints.
 
 ## `gmmp_economic_subtopics_2025.csv`
 

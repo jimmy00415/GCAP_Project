@@ -41,5 +41,7 @@ website,2020,politics_government,21
 website,2025,politics_government,24
 legacy,2025,sports,15
 website,2025,sports,14
+legacy,2020,crime_violence_excluding_gbv,24
 legacy,2025,crime_violence_excluding_gbv,21
+website,2020,crime_violence_excluding_gbv,27
 website,2025,crime_violence_excluding_gbv,21

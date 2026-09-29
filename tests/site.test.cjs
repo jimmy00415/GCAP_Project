@@ -126,6 +126,34 @@ test('the recurrence matrix reveals all eight appearances across six identified 
   await context.close();
 });
 
+test('mobile and tablet time charts remain readable and keyboard scrollable', async () => {
+  for (const width of [390, 768]) {
+    const { context, page } = await visit({ viewport: { width, height: 844 } });
+    for (const selector of ['.overview-shell .chart-scroll', '.trend-shell .chart-scroll']) {
+      const viewport = page.locator(selector);
+      assert.ok(await viewport.count(), `${selector} missing`);
+      const dimensions = await viewport.evaluate((node) => ({ client: node.clientWidth, content: node.scrollWidth, tabIndex: node.tabIndex, svgWidth: node.querySelector('svg').getBoundingClientRect().width }));
+      assert.ok(dimensions.content > dimensions.client, `${selector} does not offer horizontal inspection at ${width}px`);
+      assert.ok(dimensions.svgWidth >= 700, `${selector} compresses axis labels at ${width}px`);
+      assert.equal(dimensions.tabIndex, 0, `${selector} cannot be scrolled from keyboard`);
+      assert.ok(await page.locator(`${selector} ~ .chart-note`).count(), `${selector} lacks an explanatory note`);
+    }
+    assert.equal(await page.locator('.overview-shell .scroll-hint').isVisible(), true);
+    await context.close();
+  }
+});
+
+test('mobile evidence tables remain keyboard scrollable', async () => {
+  const { context, page } = await visit({ viewport: { width: 390, height: 844 } });
+  const matrixViewport = page.locator('.matrix-block .table-wrap');
+  assert.equal(await matrixViewport.getAttribute('tabindex'), '0');
+  assert.match(await page.locator('.matrix-block').innerText(), /scroll.*article columns|swipe.*article columns/i);
+  const topicTableViewport = page.locator('#topics .table-wrap');
+  assert.equal(await topicTableViewport.getAttribute('tabindex'), '0');
+  assert.match(await page.locator('#topics').innerText(), /swipe table to see website values/i);
+  await context.close();
+});
+
 test('published tables retain the checked 2025 and local count values', async () => {
   const { context, page } = await visit();
   const tableRows = (name) => page.getByRole('table', { name }).locator('tbody tr').evaluateAll((rows) => rows.map((row) => [...row.children].map((cell) => cell.textContent.trim()).join(' ')));

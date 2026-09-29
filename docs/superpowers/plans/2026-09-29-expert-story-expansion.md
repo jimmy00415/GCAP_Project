@@ -21,7 +21,7 @@
 
 - The 1995–2025 visibility series and 2015–2025 website series have different starts; test that the chart and table do not create pre-2015 website values.
 - Topic visibility is not expert-role share; test each chart's explanatory denominator and source locator.
-- Sports and non-GBV crime have only 2025 rows; test that absent historical values are never shown as zero.
+- Sports has only 2025 rows. Crime excluding GBV has 2020 and 2025 rows; the older broader crime series must not be spliced into it. Test that absent values are never shown as zero.
 - The 48-value role grid can drift from the CSV; test every visible cell against its data row.
 - Extra sections can break sticky navigation and narrow layouts; test links, scroll position and 360/768/1440 overflow.
 
@@ -34,7 +34,7 @@
 **Interfaces:** CSV columns `medium,year,women_percent` for visibility; `medium,year,topic,women_percent` for topics; `topic,women_percent` for economic subtopics. The existing S01 source ID covers all global tables.
 
 - [ ] Add tests for 10 visibility rows, all exact values and missing website years.
-- [ ] Add tests for 44 topic rows, six 2025 topic pairs, four complete historical series, absent earlier sports/crime cells and two economic subtopics.
+- [ ] Add tests for 46 topic rows, six 2025 topic pairs, four complete historical series, the 2020 crime pair, absent earlier separate sports cells and two economic subtopics.
 - [ ] Run data tests to confirm RED from absent files.
 - [ ] Create the CSVs, locators and denominator/missingness definitions; run data tests to GREEN.
 - [ ] Commit the verified data package.

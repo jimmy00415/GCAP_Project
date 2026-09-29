@@ -147,6 +147,10 @@ tbody tr:last-child { border-bottom: 1px solid var(--line); }
 .legacy-line { background: var(--teal); }
 .website-line { background: var(--rust); }
 .trend-chart { display: block; width: 100%; height: auto; margin: 1rem 0 .5rem; overflow: visible; }
+.chart-scroll { overflow-x: auto; max-width: 100%; }
+.chart-scroll .trend-chart { min-width: 700px; }
+.chart-scroll:focus-visible, .table-wrap[tabindex]:focus-visible { outline: 3px solid #d57147; outline-offset: 3px; }
+.scroll-hint { display: none; color: var(--teal); font-size: .73rem; font-weight: 800; letter-spacing: .02em; margin: .8rem 0 .3rem; }
 .trend-chart .grid line { stroke: #d7dfd7; stroke-width: 1; }
 .trend-chart .axis-labels { fill: #64716c; font-size: 12px; font-family: var(--sans); text-anchor: end; }
 .trend-chart .axis-labels text:nth-child(n+7) { text-anchor: middle; }
@@ -259,6 +263,10 @@ tbody tr:last-child { border-bottom: 1px solid var(--line); }
 .checklist-sheet .checklist input { width: 20px; height: 20px; margin-top: .5rem; accent-color: var(--teal); }
 .sheet-footer { display: flex; justify-content: space-between; gap: 2rem; border-top: 1px solid var(--ink); margin-top: 2rem; padding-top: .8rem; color: var(--ink-soft); font-size: .72rem; }
 
+@media (max-width: 1150px) {
+  .chart-shell .scroll-hint { display: block; }
+}
+
 @media (max-width: 1050px) {
   .hero-rail { display: none; }
   .hero-inner { padding-right: 5vw; }
@@ -306,6 +314,7 @@ tbody tr:last-child { border-bottom: 1px solid var(--line); }
   .topic-row { grid-template-columns: 1fr; gap: .55rem; }
   .topic-row h4 { margin: 0; }
   .topic-axis { margin-left: 0; }
+  .scroll-hint { display: block; }
   .matrix-block { padding: 1rem; }
   .case-grid, .count-grid, .quote-grid, .method-grid { grid-template-columns: 1fr; }
   .quote-card { min-height: 0; }
