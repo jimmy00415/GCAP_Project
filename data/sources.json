@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-29",
+  "version": "2026-10-13",
   "sources": {
     "S01": {
       "title": "GMMP 2025 Global Report: Progress on a Plateau",
@@ -37,6 +37,33 @@
       "url": "https://www.reflectreality.internews.org/chapter-4/planning-and-analysis",
       "use": "Practitioner guidance for considering source function and keeping a sourcing record"
     },
+    "I01": {
+      "title": "Technology interview record — Anonymous interviewee, Senior Software Engineer, Google",
+      "record": "Project-held structured Q&A, five pages",
+      "public_excerpts": "interview_excerpts.json",
+      "locator": "Quote: page 3, External selection. Context: pages 3–4, Invisible work, News framing and Intervention.",
+      "publication_confirmed": "2026-10-13",
+      "interview_date": null,
+      "use": "Individual account of contribution, credit and repeat speaking opportunities; anonymous attribution preserved"
+    },
+    "I02": {
+      "title": "Finance interview record — Jesseca, Senior Executive, JPMorgan",
+      "record": "Project-held structured Q&A, five pages",
+      "public_excerpts": "interview_excerpts.json",
+      "locator": "Quote: page 3, Selection. Context: pages 2–4, Gender & authority, Visibility, Availability and Intervention.",
+      "publication_confirmed": "2026-10-13",
+      "interview_date": null,
+      "use": "Individual account of speaker selection, institutional representation and deadlines"
+    },
+    "I03": {
+      "title": "Medicine interview record — Wendy, Doctor, HKU Hospital",
+      "record": "Project-held structured Q&A, five pages",
+      "public_excerpts": "interview_excerpts.json",
+      "locator": "Quote: page 2, Perceived authority. Context: pages 2–4, Defining expertise, Media selection, Interpreting the data and Intervention.",
+      "publication_confirmed": "2026-10-13",
+      "interview_date": null,
+      "use": "Individual account of credentials, perceptions and specialist fit"
+    },
     "C01": { "title": "HK home prices hit 28-month high", "publisher": "RTHK English", "date": "2026-04-28", "url": "https://news.rthk.hk/rthk/en/component/k2/1852715-20260428.htm" },
     "C02": { "title": "'Bonus plot ratio scheme a core step in urban renewal'", "publisher": "RTHK English", "date": "2026-08-20", "url": "https://news.rthk.hk/rthk/en/component/k2/1866872-20260820.htm" },
     "C03": { "title": "MTR Corp sees profits drop 7pc in 2025", "publisher": "RTHK English", "date": "2026-03-12", "url": "https://news.rthk.hk/rthk/en/component/k2/1847082-20260312.htm" },
@@ -53,6 +80,7 @@
     "local_unit": "One named speaking person per article; repeated quotations in one article count once. A stable person_id deduplicates across articles.",
     "local_roles": "Specialist commentator interprets a wider issue using relevant knowledge. Institutional spokesperson speaks about or represents an organisation's own affairs. These local speaking-function labels adapt but do not exactly replicate GMMP's subject-priority coding.",
     "gender_presentation": "F and M require explicit female or male presentation in the selected text or an identified person's selected cross-reference. U means not established from selected text and does not describe a non-binary identity.",
+    "interview_evidence": "Three structured Q&A records supplied by the project team. Wording and public attribution confirmed by the team on 13 October 2026. Dates, interviewer and mode are not recorded. Quotes are exact excerpts; summaries are editorial paraphrases. Affiliations follow the records; individual views do not establish employer policy. These records are not added to GMMP data or RTHK case counts.",
     "limits": "Do not pool global and local data; infer source-selection motives; reconstruct GMMP person counts from rounded percentages; or claim independent second coding before it occurs."
   }
 }

@@ -69,8 +69,16 @@ The local roles adapt the GMMP guide's distinction but are **not an exact replic
 
 The article can reveal the quoted contribution but not the full sourcing process: whom a reporter approached, who declined, or why. No personal-experience contribution appears in these six cases. Do not pool these local rows with the global GMMP figures.
 
+## `interview_excerpts.json`
+
+Three five-page structured Q&A records were supplied by the project team: an anonymous senior software engineer at Google (I01), Jesseca, a senior executive at JPMorgan (I02), and Wendy, a doctor at HKU Hospital (I03). Names, roles and affiliations follow the supplied records. The team confirmed wording and public attribution on **13 October 2026**; that is a publication confirmation date, not an interview date. The original PDFs retain earlier working-record headers and are held locally by the project.
+
+Each public record includes one exact quotation, its PDF page and question heading, an editorial summary, further context and a reporting question. `interview_date`, `interviewer` and `interview_mode` are null because the files do not provide them. Null means not recorded, not that no interview occurred. The engineer's anonymous attribution is preserved, without inventing a name or gender.
+
+The records illustrate questions about contribution, recognition, institutional selection, credentials and public perception. They are three qualitative perspectives, not a representative sample or evidence of employer policy. They are not coded into `local_cases.csv`, added to the eight RTHK appearances or pooled with GMMP percentages. The excerpt register is pre-rendered into the page, including native disclosures, so no runtime fetch or JavaScript is required.
+
 ## `sources.json`
 
-The `sources` object maps S01–S05 and C01–C06 to direct URLs, locators and intended uses. The `method` object records the separate global denominators, local selection, unit, role adaptation, presentation rule and limits. `S06` in the proposal names a course outline that was not supplied in this folder and is therefore not presented as a public source on the site.
+The `sources` object maps S01–S05 and C01–C06 to direct URLs, locators and intended uses; I01–I03 identify the project-held interview records and public excerpt file. The `method` object records the separate global denominators, local selection, unit, role adaptation, presentation rule, interview provenance and limits. `S06` in the proposal names a course outline that was not supplied in this folder and is therefore not presented as a public source on the site.
 
-An independent second coding pass, audience test, practitioner feedback and any original interviews remain proposed activities. Add dated records only if they actually occur, and update the site and files together if the result changes.
+An independent second coding pass, audience test and independent project/NGO review remain proposed activities. The three interview records are now supplied and incorporated; they do not establish completion of those other activities. Add dated records when available, and update the site and files together if the result changes.

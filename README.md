@@ -1,6 +1,6 @@
 # Who Gets to Be the Expert?
 
-A static editorial data story for GCAP3117, published at [jimmy00415.github.io/GCAP_Project](https://jimmy00415.github.io/GCAP_Project/). The full article, charts, case cards, sources and checklist are readable without JavaScript. JavaScript only switches the 2025 chart medium and shows reading progress. No build step, backend, analytics, external font or runtime data request is required.
+A static editorial data story for GCAP3117, published at [jimmy00415.github.io/GCAP_Project](https://jimmy00415.github.io/GCAP_Project/). The full article, charts, case cards, three practitioner interviews, sources and checklist are readable without JavaScript. Native disclosure panels reveal interview context. JavaScript only switches the 2025 chart medium and shows reading progress. No build step, backend, analytics, external font or runtime data request is required.
 
 ## View locally
 
@@ -15,11 +15,11 @@ npm ci
 npm test
 ```
 
-The test suite checks all 106 transcribed final-report GMMP percentages, the eight local appearances and six distinct people, the no-JavaScript reading path, source links, responsive overflow, and browser interactions. Browser tests use Chrome through Playwright. If Chrome is unavailable, install a Playwright Chromium browser and change the channel in `tests/site.test.cjs`.
+The test suite checks all 106 transcribed final-report GMMP percentages, the eight local appearances and six distinct people, exact interview excerpts and anonymous attribution, native disclosures without JavaScript, source links, responsive overflow, and browser interactions. Browser tests use Chrome through Playwright. If Chrome is unavailable, install a Playwright Chromium browser and change the channel in `tests/site.test.cjs`.
 
 ## Publish updates on GitHub Pages
 
-1. Commit changes on `site-build` after running `npm test`. The working proposal PDF is deliberately ignored and will not be pushed.
+1. Commit changes on `site-build` after running `npm test`. The proposal and original interview PDFs are ignored; the site publishes selected approved interview excerpts and locators instead of the working PDF files.
 2. Run `git push origin site-build`. GitHub Pages is already set to **Deploy from a branch → site-build → /(root)**.
 3. Wait for GitHub's deployment status, then open the [public site](https://jimmy00415.github.io/GCAP_Project/). Check the desktop and mobile layouts, switch the medium control, open the printable checklist, and download the five CSV files. The automated browser suite runs against local files; this final public-URL check confirms that Pages is serving the updated commit.
 
@@ -32,8 +32,9 @@ GitHub Pages is configured to publish `site-build` from `/(root)` in [jimmy00415
 - `data/gmmp_topics.csv`: 46 news-beat values from Table 1 and Figures 10–11. Crime excluding GBV has 2020 and 2025 comparisons; separate sports values begin in 2025.
 - `data/gmmp_economic_subtopics_2025.csv`: two narrower 2025 legacy-news values from Table 4.
 - `data/local_cases.csv`: eight project-coded named person–article appearances in six purposively selected 2026 RTHK reports.
+- `data/interview_excerpts.json`: three approved interview quotations, editorial summaries, reporting questions and PDF page/question locators. The project team confirmed wording and public attribution on 13 October 2026. Google’s interviewee remains anonymous; Jesseca and Wendy retain the names and affiliations supplied in the records.
 - `data/sources.json`: source URLs, locators, methods and limitations.
 - `data/README.md`: data dictionary and reconciliation rules.
 - `docs/superpowers/specs/` and `docs/superpowers/plans/`: the build rationale and implementation plan.
 
-The 106 global percentages answer different questions and use different denominators; see the on-page methods and data dictionary before comparing them. The local case selection is a teaching set, not a population estimate for Hong Kong. The site does not claim original interviews, independent coding review, comprehension test results or NGO feedback. Those course activities require real group records before submission. A complete course rubric, when available, should be checked against this site and the rest of the group's submission package.
+The 106 global percentages answer different questions and use different denominators; see the on-page methods and data dictionary before comparing them. The local case selection is a teaching set, not a population estimate for Hong Kong. The interview records add individual qualitative accounts, without changing any case or global counts. Their interview dates, interviewer and mode were not recorded in the supplied files. Independent coding review, comprehension test results and independent project/NGO review still require group records before submission. A complete course rubric, when available, should be checked against this site and the rest of the group's submission package.

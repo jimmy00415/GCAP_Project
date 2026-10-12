@@ -1,0 +1,65 @@
+{
+  "version": "2026-10-13",
+  "publication_confirmation": {
+    "date": "2026-10-13",
+    "confirmed_by": "Project team, in the authoring conversation",
+    "scope": "Interview wording and public attribution confirmed. The supplied PDFs retain earlier working-record headers; original files are held by the project."
+  },
+  "scope": "Three practitioner perspectives selected for qualitative explanation, not a representative sample, a measure of prevalence, proof of employer policy or a causal explanation for the GMMP pattern. Affiliations are as supplied in the records. Interview dates, interviewer and interview mode are not recorded in the supplied files.",
+  "records": [
+    {
+      "id": "I01",
+      "display_name": "Anonymous interviewee",
+      "role": "Senior Software Engineer",
+      "organisation": "Google",
+      "sector": "Technology",
+      "source_file": "Google_Senior_Software_Engineer_Interview_Record.pdf",
+      "interview_date": null,
+      "interviewer": null,
+      "interview_mode": null,
+      "quote": "If nominations are informal, the pool can stay narrow without anyone intentionally excluding others.",
+      "quote_page": 3,
+      "quote_section": "02 External selection",
+      "summary": "The engineer describes collaborative work in which one person traces a problem, another designs the fix and another presents the result. Public credit can gather around the presenter, while previous speaking experience makes that person an easier choice next time.",
+      "additional_summary": "The record recommends naming contributors in design reviews and incident reports, documenting the reasoning behind decisions, and preparing several qualified speakers. It also describes how the same woman engineer could be invited to discuss workplace experience in one story and technical systems in another.",
+      "additional_locator": "Page 3: Invisible work and News framing; page 4: Intervention",
+      "reporting_question": "Who produced the key insight, and who was chosen to explain it?"
+    },
+    {
+      "id": "I02",
+      "display_name": "Jesseca",
+      "role": "Senior Executive",
+      "organisation": "JPMorgan",
+      "sector": "Finance",
+      "source_file": "Jesseca_JPMorgan_Interview_Record.pdf",
+      "interview_date": null,
+      "interviewer": null,
+      "interview_mode": null,
+      "quote": "The final choice is therefore not a pure ranking of who knows the most.",
+      "quote_page": 3,
+      "quote_section": "01 Selection",
+      "summary": "Jesseca describes selection of public speakers as a combination of subject knowledge, communication, seniority, relationships, approval and timing. A visible institutional representative may speak for work produced by several specialists. Jesseca also describes different expectations around women’s confidence and directness, while cautioning that teams and managers differ.",
+      "additional_summary": "The record explains that a last-minute request can require checking figures, what is public and internal clearance. Jesseca proposes expert lists organised by subject, tracking previous speaking opportunities and asking for the person who owns the analytical question.",
+      "additional_locator": "Page 2: Gender & authority; page 3: Visibility; page 4: Availability and Intervention",
+      "reporting_question": "Does this story need the institution’s position or analysis of the wider issue?"
+    },
+    {
+      "id": "I03",
+      "display_name": "Wendy",
+      "role": "Doctor",
+      "organisation": "HKU Hospital",
+      "sector": "Medicine",
+      "source_file": "Wendy_HKU_Hospital_Interview_Record.pdf",
+      "interview_date": null,
+      "interviewer": null,
+      "interview_mode": null,
+      "quote": "But credentials do not remove perception; they operate alongside it.",
+      "quote_page": 2,
+      "quote_section": "02 Perceived authority",
+      "summary": "Wendy describes medical expertise as specific to training, specialty, relevant cases and judgment. The record also examines gendered expectations about warmth and confidence, and how clinical schedules, confidentiality and media readiness can affect who is available to speak.",
+      "additional_summary": "Wendy distinguishes a treating clinician, a hospital spokesperson and a specialist commentator. The record cautions that a woman in a health story may be a patient, family member, witness, spokesperson or expert, and recommends source directories organised by specialty and subtopic.",
+      "additional_locator": "Page 2: Defining expertise; page 3: Media selection; page 4: Interpreting the data and Intervention",
+      "reporting_question": "Which clinical or research expertise matches the question being asked?"
+    }
+  ]
+}

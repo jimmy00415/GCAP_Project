@@ -57,9 +57,37 @@ test('story has a logical contents journey and directly sourced evidence', async
   assert.ok(await page.getByRole('table', { name: '2025 source-role values' }).count());
   assert.ok(await page.getByRole('table', { name: 'Expert-source monitoring rounds' }).count());
   assert.ok(await page.getByRole('table', { name: 'Selected-case counts' }).count());
-  assert.equal(await page.locator('blockquote').count(), 2);
+  assert.equal(await page.locator('#voices blockquote').count(), 2);
   assert.match(await page.locator('#voices').innerText(), /Sarah Macharia/);
   assert.match(await page.locator('#voices').innerText(), /participant E36/i);
+  await context.close();
+});
+
+test('three confirmed interviews connect the case audit to practical sourcing questions', async () => {
+  const { context, page } = await visit({ javaScriptEnabled: false });
+  const section = page.locator('#interviews');
+  assert.equal(await section.count(), 1, 'interview chapter missing');
+  const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'data', 'interview_excerpts.json'), 'utf8'));
+  assert.equal(await section.locator('[data-interview]').count(), 3);
+  for (const record of data.records) {
+    const card = section.locator(`[data-interview="${record.id}"]`);
+    const text = await card.locator('blockquote').innerText();
+    assert.equal(text.replace(/[“”]/g, '').trim(), record.quote);
+    assert.equal(await card.locator('.interview-summary').innerText(), record.summary);
+    assert.match(await card.innerText(), new RegExp(record.display_name));
+    assert.ok(await card.locator(`a[href="#ref-${record.id}"]`).count());
+    const detail = card.locator('details');
+    await detail.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await detail.getAttribute('open'), '');
+    assert.ok(await detail.locator('.interview-detail-body').isVisible());
+  }
+  assert.match(await section.innerText(), /confirmed.*13 October 2026/i);
+  assert.match(await section.innerText(), /dates and interview mode.*not recorded/i);
+  assert.match(await section.innerText(), /employer policy/i);
+  assert.equal(await page.getByRole('navigation', { name: 'Story contents' }).getByRole('link', { name: 'Interviews', exact: true }).count(), 1);
+  assert.deepEqual(await page.locator('article > section[id]').evaluateAll((nodes) => nodes.map((node) => node.id).filter((id) => ['counting', 'interviews', 'voices', 'checklist'].includes(id))), ['counting', 'interviews', 'voices', 'checklist']);
+  assert.equal(await page.locator('a[href$="Interview_Record.pdf"]').count(), 0, 'working PDFs must not be published as approved records');
   await context.close();
 });
 

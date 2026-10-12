@@ -5,6 +5,23 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 
+test('interview excerpts preserve approved wording, anonymity and missing interview metadata', () => {
+  const file = path.join(root, 'data', 'interview_excerpts.json');
+  assert.ok(fs.existsSync(file), 'approved interview excerpts are missing');
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.equal(data.publication_confirmation.date, '2026-10-13');
+  assert.equal(data.records.length, 3);
+  assert.deepEqual(data.records.map((record) => [record.id, record.quote, record.quote_page]), [
+    ['I01', 'If nominations are informal, the pool can stay narrow without anyone intentionally excluding others.', 3],
+    ['I02', 'The final choice is therefore not a pure ranking of who knows the most.', 3],
+    ['I03', 'But credentials do not remove perception; they operate alongside it.', 2]
+  ]);
+  assert.equal(data.records[0].display_name, 'Anonymous interviewee');
+  assert.ok(data.records.every((record) => record.interview_date === null && record.interview_mode === null));
+  assert.match(data.scope, /three practitioner perspectives/i);
+  assert.match(data.scope, /employer policy/i);
+});
+
 function rows(name) {
   const text = fs.readFileSync(path.join(root, 'data', name), 'utf8').trim();
   const [header, ...lines] = text.split(/\r?\n/);
