@@ -25,16 +25,159 @@ async function visit(options = {}) {
   return { context, page };
 }
 
-test('lead states the five-W finding before interaction and gives its denominator', async () => {
+test('lead opens with local people while the hero retains the sourced global finding', async () => {
   const { context, page } = await visit();
   assert.match((await page.locator('h1').innerText()).replace(/\s+/g, ' '), /Who Gets to Be the Expert\?/);
-  assert.match(await page.locator('#intro').innerText(), /23%/);
-  assert.match(await page.locator('#intro').innerText(), /42%/);
-  assert.match(await page.locator('#intro').innerText(), /2025/);
-  assert.match(await page.locator('#intro').innerText(), /global/i);
-  assert.match(await page.locator('#intro').innerText(), /print.*radio.*television/i);
-  assert.match(await page.locator('#intro').innerText(), /within each source role/i);
+  const intro = await page.locator('#intro').innerText();
+  assert.match(intro, /Hannah Jeong/);
+  assert.match(intro, /Jeny Yeung/);
+  const hero = await page.locator('.hero').innerText();
+  assert.match(hero, /23\s*%/);
+  assert.match(hero, /42\s*%/);
+  assert.match(hero, /2025/);
+  assert.match(hero, /global/i);
+  assert.match(hero, /print.*radio.*(?:television|TV)/i);
+  assert.match(hero, /within each source role/i);
+  assert.equal(await page.locator('.scope-note a[href="#ref-S01"]').count(), 1);
   await context.close();
+});
+
+test('local reading examples are sourced and usable without JavaScript', async () => {
+  const { context, page } = await visit({ javaScriptEnabled: false });
+  try {
+    const opening = page.locator('#hong-kong-opening');
+    assert.equal(await opening.count(), 1, 'the local opening must be present in the static article');
+    assert.ok(await opening.isVisible());
+    assert.ok(await opening.evaluate((node) => Boolean(node.compareDocumentPosition(document.getElementById('evidence')) & Node.DOCUMENT_POSITION_FOLLOWING)), 'local examples should introduce the role definitions');
+    assert.equal(await opening.locator('.reading-card').count(), 2);
+    for (const [id, name, source, role] of [
+      ['hannah', 'Hannah Jeong', 'https://news.rthk.hk/rthk/en/component/k2/1866872-20260820.htm', /specialist|interpret/i],
+      ['jeny', 'Jeny Yeung', 'https://news.rthk.hk/rthk/en/component/k2/1866062-20260813.htm', /institution|represent/i]
+    ]) {
+      const card = opening.locator(`[data-reading-case="${id}"]`);
+      assert.ok(await card.evaluate((node) => node.matches('fieldset') || Boolean(node.querySelector('fieldset'))), `${name} needs a fieldset for the choices`);
+      assert.match(await card.locator('legend').innerText(), new RegExp(name));
+      assert.equal(await card.locator('[data-reading-choices]').isVisible(), false, 'inactive choices must not be exposed without JavaScript');
+      const answer = card.locator('details.reading-answer');
+      assert.ok(await answer.isVisible());
+      assert.equal(await answer.getAttribute('open'), null);
+      await answer.locator('summary').focus();
+      await page.keyboard.press('Enter');
+      assert.equal(await answer.getAttribute('open'), '');
+      assert.match(await answer.innerText(), role);
+      assert.equal(await card.locator(`a[href="${source}"]`).count(), 1, `${name} needs a direct report source`);
+    }
+    assert.equal(await page.locator('#count-visual').count(), 1);
+    assert.equal(await page.locator('#count-visual').isVisible(), false, 'inactive count control must stay hidden without JavaScript');
+    assert.ok(await page.getByRole('table', { name: 'Person-article recurrence matrix' }).isVisible());
+  } finally {
+    await context.close();
+  }
+});
+
+test('local reading choices explain wrong answers and allow a keyboard retry', async () => {
+  const { context, page } = await visit();
+  try {
+    assert.equal(await page.locator('#hong-kong-opening .reading-card').count(), 2);
+    for (const [id, correct] of [['hannah', 'specialist'], ['jeny', 'institution']]) {
+      const card = page.locator(`.reading-card[data-reading-case="${id}"]`);
+      const choices = card.locator('[data-reading-choices]');
+      const answer = card.locator('details.reading-answer');
+      const feedback = card.locator('[data-reading-feedback]');
+      assert.ok(await choices.isVisible());
+      assert.equal(await answer.isVisible(), false);
+      assert.deepEqual(await choices.locator('button[data-reading-choice]').evaluateAll((buttons) => buttons.map((button) => button.dataset.readingChoice).sort()), ['experience', 'institution', 'specialist']);
+      assert.equal(await choices.locator('[aria-pressed="true"]').count(), 0);
+      await choices.locator('[data-reading-choice="experience"]').click();
+      assert.equal(await answer.getAttribute('open'), '');
+      assert.ok(await answer.isVisible());
+      assert.equal(await feedback.getAttribute('role'), 'status');
+      assert.match(await feedback.innerText(), /A closer reading suggests/i);
+      assert.equal(await choices.locator('[data-reading-choice="experience"]').getAttribute('aria-pressed'), 'true');
+      const correctChoice = choices.locator(`[data-reading-choice="${correct}"]`);
+      await correctChoice.focus();
+      await page.keyboard.press('Enter');
+      assert.match(await feedback.innerText(), /Yes/i);
+      assert.equal(await correctChoice.getAttribute('aria-pressed'), 'true');
+      assert.equal(await choices.locator('[aria-pressed="true"]').count(), 1);
+      assert.equal(await choices.locator('[data-reading-choice="experience"]').getAttribute('aria-pressed'), 'false');
+    }
+  } finally {
+    await context.close();
+  }
+});
+
+test('count control groups eight appearances into six source-linked people and back', async () => {
+  const { context, page } = await visit();
+  try {
+    const visual = page.locator('#count-visual');
+    assert.equal(await visual.count(), 1, 'the enhanced recurrence view is missing');
+    assert.ok(await visual.isVisible());
+    const list = page.locator('#count-people');
+    const toggle = page.locator('#count-unique');
+    const total = page.locator('#count-total');
+    const matrix = page.getByRole('table', { name: 'Person-article recurrence matrix' });
+    const expected = await matrix.locator('td[data-present="true"]').evaluateAll((cells) => cells.map((cell) => `${cell.closest('tr').dataset.person}:${cell.dataset.case}`).sort());
+    const sourcePairs = fs.readFileSync(path.resolve(__dirname, '..', 'data', 'local_cases.csv'), 'utf8').trim().split(/\r?\n/).slice(1).map((line) => {
+      const values = line.split(',');
+      return `${values[4]}:${values[0]}`;
+    }).sort();
+    assert.deepEqual(expected, sourcePairs, 'the recurrence matrix must match the case dataset');
+    const appearancePairs = () => list.locator(':scope > li').evaluateAll((items) => items.flatMap((item) => [...item.querySelectorAll('a[href^="#case-"]')].map((link) => `${item.dataset.person}:${link.getAttribute('href').slice(6)}`)).sort());
+    assert.equal(await list.locator(':scope > li').count(), 8);
+    assert.equal(await total.innerText(), '8 appearances');
+    assert.equal(await toggle.innerText(), 'Count each person once');
+    assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
+    assert.deepEqual(await appearancePairs(), expected);
+    for (const href of await list.locator('a[href^="#case-"]').evaluateAll((links) => links.map((link) => link.getAttribute('href')))) {
+      assert.equal(await page.locator(href).count(), 1, `missing linked case ${href}`);
+    }
+    await toggle.focus();
+    await page.keyboard.press('Space');
+    assert.equal(await toggle.getAttribute('aria-pressed'), 'true');
+    assert.equal(await total.innerText(), '6 distinct people');
+    assert.equal(await list.locator(':scope > li').count(), 6);
+    assert.deepEqual(await appearancePairs(), expected, 'grouping must retain every article link');
+    assert.deepEqual(await list.locator(':scope > li').evaluateAll((items) => items.map((item) => item.dataset.person).sort()), [...new Set(sourcePairs.map((pair) => pair.split(':')[0]))].sort());
+    const explanation = page.locator('#count-explanation');
+    assert.equal(await explanation.getAttribute('role'), 'status');
+    assert.match(await explanation.innerText(), /Eddie Kwok/);
+    assert.match(await explanation.innerText(), /Jeny Yeung/);
+    assert.ok(await list.locator(':scope > li').evaluateAll((items) => items.every((item) => [item, ...item.querySelectorAll('*')].every((node) => Number(getComputedStyle(node).opacity) === 1))), 'grouped labels must remain fully legible');
+    assert.ok(await matrix.isVisible());
+    const unknown = await matrix.locator('[data-person="p_michael_fitzgerald"]').innerText();
+    assert.match(unknown, /\bU\b/);
+    await page.keyboard.press('Space');
+    assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
+    assert.equal(await total.innerText(), '8 appearances');
+    assert.equal(await list.locator(':scope > li').count(), 8);
+    assert.deepEqual(await appearancePairs(), expected);
+  } finally {
+    await context.close();
+  }
+});
+
+test('new reading and counting controls remain usable with reduced motion on a narrow screen', async () => {
+  const { context, page } = await visit({ viewport: { width: 360, height: 800 }, reducedMotion: 'reduce' });
+  try {
+    assert.equal(await page.locator('#hong-kong-opening .reading-card').count(), 2);
+    for (const [id, correct] of [['hannah', 'specialist'], ['jeny', 'institution']]) {
+      const card = page.locator(`.reading-card[data-reading-case="${id}"]`);
+      await card.locator(`[data-reading-choice="${correct}"]`).click();
+      assert.match(await card.locator('[data-reading-feedback]').innerText(), /Yes/i);
+    }
+    await page.locator('#count-unique').click();
+    assert.equal(await page.locator('#count-total').innerText(), '6 distinct people');
+    const bounds = await page.locator('[data-reading-choice], #count-unique, #count-people').evaluateAll((nodes) => nodes.map((node) => {
+      const box = node.getBoundingClientRect();
+      return { left: box.left, right: box.right, width: box.width };
+    }));
+    assert.ok(bounds.every((box) => box.width > 0 && box.left >= -1 && box.right <= 361), 'new controls overflow the narrow viewport');
+    const sizes = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, viewport: window.innerWidth }));
+    assert.ok(sizes.scroll <= sizes.viewport + 1, `expanded interactions overflow: ${sizes.scroll}px`);
+  } finally {
+    await context.close();
+  }
 });
 
 test('desktop opening screen includes both labelled values and the global scope note', async () => {
@@ -369,4 +512,24 @@ test('story and printable checklist have no serious or critical WCAG accessibili
     assert.deepEqual(failures.map((violation) => `${violation.id}: ${violation.nodes.length} affected elements`), [], destination);
   }
   await context.close();
+});
+
+test('expanded mobile exercises and evidence tables have no serious accessibility violations', async () => {
+  const { context, page } = await visit({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  try {
+    await page.locator('[data-reading-case="hannah"] [data-reading-choice="experience"]').click();
+    await page.locator('[data-reading-case="jeny"] [data-reading-choice="institution"]').click();
+    await page.locator('#count-unique').click();
+    const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+    const failures = result.violations.filter((violation) => ['serious', 'critical'].includes(violation.impact));
+    assert.deepEqual(failures.map((violation) => `${violation.id}: ${violation.nodes.map((node) => node.target).join(', ')}`), []);
+    const region = page.getByRole('region', { name: 'Scrollable source-role values' });
+    await region.focus();
+    const before = await region.evaluate((node) => node.scrollLeft);
+    await page.keyboard.press('ArrowRight');
+    await page.waitForFunction(() => document.activeElement.scrollLeft > 0, null, { timeout: 2000 });
+    assert.ok(await region.evaluate((node) => node.scrollLeft) > before);
+  } finally {
+    await context.close();
+  }
 });

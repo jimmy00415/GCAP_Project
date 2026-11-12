@@ -1,6 +1,6 @@
 # Who Gets to Be the Expert?
 
-A static editorial data story for GCAP3117, published at [jimmy00415.github.io/GCAP_Project](https://jimmy00415.github.io/GCAP_Project/). The full article, charts, case cards, three practitioner interviews, sources and checklist are readable without JavaScript. Native disclosure panels reveal interview context. JavaScript only switches the 2025 chart medium and shows reading progress. No build step, backend, analytics, external font or runtime data request is required.
+A static editorial data story for GCAP3117, published at [jimmy00415.github.io/GCAP_Project](https://jimmy00415.github.io/GCAP_Project/). The full article, charts, case cards, three practitioner interviews, sources and checklist are readable without JavaScript. Two source-linked local reading cards introduce the source-role distinction, with answers in native disclosures. JavaScript adds retryable choices and explanatory feedback, switches the 2025 chart medium, groups eight appearances into six people, and shows reading progress. No build step, backend, analytics, external font or runtime data request is required.
 
 ## View locally
 
@@ -15,7 +15,7 @@ npm ci
 npm test
 ```
 
-The test suite checks all 106 transcribed final-report GMMP percentages, the eight local appearances and six distinct people, exact interview excerpts and anonymous attribution, native disclosures without JavaScript, source links, responsive overflow, and browser interactions. Browser tests use Chrome through Playwright. If Chrome is unavailable, install a Playwright Chromium browser and change the channel in `tests/site.test.cjs`.
+The test suite checks all 106 transcribed final-report GMMP percentages, the eight local appearances and six distinct people, exact interview excerpts and anonymous attribution, the two-example exercise and count grouping, native disclosures without JavaScript, source links, responsive overflow, and desktop/mobile accessibility. Browser tests use Chrome through Playwright. If Chrome is unavailable, install a Playwright Chromium browser and change the channel in `tests/site.test.cjs`.
 
 ## Publish updates on GitHub Pages
 
@@ -24,6 +24,15 @@ The test suite checks all 106 transcribed final-report GMMP percentages, the eig
 3. Wait for GitHub's deployment status, then open the [public site](https://jimmy00415.github.io/GCAP_Project/). Check the desktop and mobile layouts, switch the medium control, open the printable checklist, and download the five CSV files. The automated browser suite runs against local files; this final public-URL check confirms that Pages is serving the updated commit.
 
 GitHub Pages is configured to publish `site-build` from `/(root)` in [jimmy00415/GCAP_Project](https://github.com/jimmy00415/GCAP_Project). GitHub Pages looks for `index.html` at the top of the selected publishing source. The `.nojekyll` file keeps these already prepared static files as-is.
+
+## Editorial decisions — 12 November 2026
+
+- **Accepted:** open with Hannah Jeong's wider redevelopment interpretation and Jeny Yeung's contribution about MTR's affairs. Each source-linked card doubles as a reading exercise, with three choices, neutral feedback and retry. Its native answer disclosure remains available without JavaScript. The paraphrases describe the published contributions without claiming what reporters asked or why.
+- **Adapted:** make the difference between eight appearances and six people interactive using the existing recurrence matrix. Grouping retains all eight case links; the full matrix and F/M/U counts remain visible. No second dataset or dependency is introduced.
+- **Adapted:** offer a short route to the local reports while keeping all global charts visible, with the 23%/42% comparison, 2025 global scope, medium, within-role denominator and GMMP citation beside the opening figures.
+- **Rejected:** the proposed drop-in script and stylesheet, which would rewrite the story after JavaScript loads, duplicate examples and hard-code another case dataset; also the proposal to hide three global evidence sections in a closed disclosure. The changes instead live in the canonical HTML, CSS and JavaScript.
+
+This revision follows [the editorial improvements design](docs/superpowers/specs/2026-11-12-editorial-improvements-design.md). The suggestion package adds no verified consent, reporting events or course requirements; the provenance and outstanding verification needs below remain applicable.
 
 ## Editorial record
 
