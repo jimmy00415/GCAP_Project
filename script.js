@@ -1,4 +1,23 @@
 (() => {
+  // A citation or an old bookmark may point into the folded evidence.
+  const revealFragment = (hash) => {
+    if (!hash) return;
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); }
+    catch { return; }
+    const target = document.getElementById(id);
+    if (!target) return;
+    for (let node = target; node; node = node.parentElement) {
+      if (node instanceof HTMLDetailsElement) node.open = true;
+    }
+  };
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest?.('a[href^="#"]');
+    if (link && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) revealFragment(link.hash);
+  });
+  window.addEventListener('hashchange', () => revealFragment(location.hash));
+  revealFragment(location.hash);
+
   // The scenarios and explanations are ordinary HTML. Only the choices need JS.
   for (const card of document.querySelectorAll('[data-reading-case]')) {
     const choices = card.querySelector('[data-reading-choices]');
@@ -81,7 +100,7 @@
   // A printed copy includes the answers even if the reader has not tried them.
   let printAnswers = [];
   window.addEventListener('beforeprint', () => {
-    printAnswers = [...document.querySelectorAll('.reading-answer')].map((answer) => ({
+    printAnswers = [...document.querySelectorAll('.role-practice, .reading-answer')].map((answer) => ({
       answer, hidden: answer.hidden, open: answer.open
     }));
     for (const { answer } of printAnswers) {

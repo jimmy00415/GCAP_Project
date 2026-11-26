@@ -1,6 +1,6 @@
 # Who Gets to Be the Expert?
 
-A static editorial data story for GCAP3117, published at [jimmy00415.github.io/GCAP_Project](https://jimmy00415.github.io/GCAP_Project/). The full article, charts, case cards, three practitioner interviews, sources and checklist are readable without JavaScript. Two source-linked local reading cards introduce the source-role distinction, with answers in native disclosures. JavaScript adds retryable choices and explanatory feedback, switches the 2025 chart medium, groups eight appearances into six people, and shows reading progress. No build step, backend, analytics, external font or runtime data request is required.
+A static editorial data story for GCAP3117, published at [jimmy00415.github.io/GCAP_Project](https://jimmy00415.github.io/GCAP_Project/). Two Hong Kong reports, one global chart and three interviews explore whose judgment readers hear in the news. “Explore the evidence” opens the supporting charts, case records, methods and downloads. The article, evidence and printable checklist work without JavaScript. JavaScript adds feedback to two optional reading exercises, switches the 2025 chart medium, groups eight appearances into six people, and shows reading progress.
 
 ## View locally
 
@@ -24,6 +24,10 @@ The test suite checks all 106 transcribed final-report GMMP percentages, the eig
 3. Wait for GitHub's deployment status, then open the [public site](https://jimmy00415.github.io/GCAP_Project/). Check the desktop and mobile layouts, switch the medium control, open the printable checklist, and download the five CSV files. The automated browser suite runs against local files; this final public-URL check confirms that Pages is serving the updated commit.
 
 GitHub Pages is configured to publish `site-build` from `/(root)` in [jimmy00415/GCAP_Project](https://github.com/jimmy00415/GCAP_Project). GitHub Pages looks for `index.html` at the top of the selected publishing source. The `.nojekyll` file keeps these already prepared static files as-is.
+
+## Editorial decisions — 26 November 2026
+
+The opening now gives the worldwide print, radio and TV figures and explains why it matters who gets asked to interpret events. Two RTHK reports illustrate different contributions women can make. The featured chart compares the two source roles in 2005 and 2025, the earliest and latest comparable rounds. The longer 1995–2025 series measures overall visibility. Interviews with an engineer, a banker and a doctor lead into a single question readers can take to their next story. The full research materials sit below the article, and existing links to individual records still open the relevant evidence.
 
 ## Editorial decisions — 12 November 2026
 
